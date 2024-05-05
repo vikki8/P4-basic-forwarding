@@ -31,7 +31,7 @@ fields. We encourage you to take a look at it.
 ## Prerequisite
 To ensure a smooth experience with the tutorials, it's essential to review and follow the [Obtaining required software guidelines](https://github.com/p4lang/tutorials#obtaining-required-software) to install required development tools.
 
-## Step 1: Run the (incomplete) starter code
+## Step: Run the starter code
 
 The directory with this README also contains a skeleton P4 program,
 `basic.p4`, which initially drops all packets. Your job will be to
@@ -90,39 +90,6 @@ actions, as defined in the P4Info file produced by the compiler (look for the
 file `build/basic.p4.p4info.txt` after executing `make run`). Any changes in the P4
 program that add or rename tables, keys, or actions will need to be reflected in
 these `sX-runtime.json` files.
-
-## Step 2: Implement L3 forwarding
-
-The `basic.p4` file contains a skeleton P4 program with key pieces of
-logic replaced by `TODO` comments. Your implementation should follow
-the structure given in this file---replace each `TODO` with logic
-implementing the missing piece.
-
-A complete `basic.p4` will contain the following components:
-
-1. Header type definitions for Ethernet (`ethernet_t`) and IPv4 (`ipv4_t`).
-2. **TODO:** Parsers for Ethernet and IPv4 that populate `ethernet_t` and `ipv4_t` fields.
-3. An action to drop a packet, using `mark_to_drop()`.
-4. **TODO:** An action (called `ipv4_forward`) that:
-	1. Sets the egress port for the next hop.
-	2. Updates the ethernet destination address with the address of the next hop.
-	3. Updates the ethernet source address with the address of the switch.
-	4. Decrements the TTL.
-5. **TODO:** A control that:
-    1. Defines a table that will read an IPv4 destination address, and
-       invoke either `drop` or `ipv4_forward`.
-    2. An `apply` block that applies the table.
-6. **TODO:** A deparser that selects the order
-    in which fields inserted into the outgoing packet.
-7. A `package` instantiation supplied with the parser, control, and deparser.
-    > In general, a package also requires instances of checksum verification
-    > and recomputation controls. These are not necessary for this tutorial
-    > and are replaced with instantiations of empty controls.
-
-## Step 3: Run your solution
-
-Follow the instructions from Step 1. This time, you should be able to
-sucessfully ping between any two hosts in the topology.
 
 ### Troubleshooting
 
